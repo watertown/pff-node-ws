@@ -1,0 +1,4 @@
+mode: "circle"
+autonomous: false
+circle_diameter: 1.0 # meters
+square_side_length: 1.0 # meters

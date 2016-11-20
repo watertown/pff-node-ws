@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="Differential_Robot">
+
+  <!-- MATERIALS -->
+
+  <material name="material_wheel"><color rgba="0.3 0.3 0.3 1"/></material>
+  <material name="material_body"><color rgba="0.9 0.9 0.9 1"/></material>
+
+  <!-- LINKS -->
+
+  <link name="map"></link>
+  <link name="odom"></link>
+  <link name="base_link">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.1"/></geometry>
+      <material name="material_body"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    </visual>
+  </link>
+  <link name="wheel_left"><visual>
+      <geometry><cylinder length="0.05" radius="0.05"/></geometry>
+      <material name="material_wheel"/>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+  </visual></link>
+  <link name="wheel_right"><visual>
+      <geometry><cylinder length="0.05" radius="0.05"/></geometry>
+      <material name="material_wheel"/>
+      <origin rpy="1.57 0 0" xyz="0 0 0"/>
+  </visual></link>
+
+  <!-- JOINTS -->
+
+  <joint name="map_odom" type="fixed">
+    <parent link="map"/>
+    <child link="odom"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="odom_base_link" type="floating">
+    <parent link="odom"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint_wheel_left" type="revolute">
+    <parent link="base_link"/>
+    <child link="wheel_left"/>
+    <origin xyz="0 0.1 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-20.0" upper="20.0" velocity="0.5"/>
+  </joint>
+
+  <joint name="joint_wheel_right" type="revolute">
+    <parent link="base_link"/>
+    <child link="wheel_right"/>
+    <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-20.0" upper="20.0" velocity="0.5"/>
+  </joint>
+
+</robot>

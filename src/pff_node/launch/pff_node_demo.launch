@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name="pff_node"
+          pkg="pff_node"
+          type="pff_node"
+          output="screen"
+          required="true">
+      <param name="pid/kp" value="1.0"/>
+      <rosparam command="load" file="$(find pff_node)/config/config.yaml" />
+    </node>
+
+    <node name="teleop_twist_keyboard"
+          pkg="teleop_twist_keyboard"
+          type="teleop_twist_keyboard.py"
+          output="screen"
+          required="false">
+    </node>
+
+</launch>

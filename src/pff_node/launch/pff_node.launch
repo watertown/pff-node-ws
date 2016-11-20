@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node name="pff_node"
+          pkg="pff_node"
+          type="pff_node"
+          output="screen"
+          required="true">
+      <rosparam command="load" file="$(find pff_node)/config/config.yaml" />
+    </node>
+
+</launch>
