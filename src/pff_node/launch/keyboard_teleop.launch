@@ -6,7 +6,6 @@
           type="pff_node"
           output="screen"
           required="true">
-      <param name="pid/kp" value="1.0"/>
       <rosparam command="load" file="$(find pff_node)/config/config.yaml" />
     </node>
 
