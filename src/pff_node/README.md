@@ -7,7 +7,6 @@
 ### 1.2 Install Dependencies
 
 ```bash
-sudo apt-get install ros-indigo-teleop-twist-keyboard
 sudo apt-get install ros-kinetic-teleop-twist-keyboard
 ```
 
@@ -28,7 +27,7 @@ catkin_make;
 
 | Topic | Msg | Description |
 |:---:|:---:|:---:|
-| `"/odom"` | `nav_msgs/Odometry` | Transform from `/odom` link to `/base_link` |
+| `"/odom"` | `nav_msgs/Odometry` | Publish transform from `/odom` link to `/base_link` |
 | `"/joint_states"` | `sensor_msgs/JointState` | Publish joint transform from parent->child link |
 
 ### 2.1.2 ROS Subscribers
@@ -46,8 +45,9 @@ catkin_make;
 | `~mode` | string | `circle` | Mode |
 | `~circle_diameter` | double | `1.0` | Diameter of Circle Path (m) |
 | `~square_side_length` | double | `1.0` | Square Path Side Length (m) |
+| `~autonomous` | bool | `true` | Robot will start following path if true |
 
-### 2.1.4 roslaunch:
+### 2.1.4 roslaunch
 
 ```xml
 <?xml version="1.0"?>
@@ -82,7 +82,6 @@ roslaunch pff_node pff_node.launch
 roslaunch pff_node rviz_sim.launch
 ```
 
-### 3.1.3 Keyboard Teleop
 
 ```bash
 roslaunch pff_node keyboard_teleop.launch
