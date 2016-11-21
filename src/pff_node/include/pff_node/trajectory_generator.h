@@ -42,7 +42,7 @@ public:
 
   void completePoint()
   {
-    ROS_WARN("completed point [%u]", current_index_);
+    // ROS_WARN("completed point [%u]", current_index_);
     if (current_index_ == points_.size() - 1)
     {
       current_index_ = 0;

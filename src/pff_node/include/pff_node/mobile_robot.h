@@ -65,10 +65,10 @@ MobileRobot::MobileRobot()
   pos_.setZero();
   vel_.setZero();
   joint_states_.name.resize(2);
-  joint_states_.name[0] = "/joint_wheel_left";
-  joint_states_.name[1] = "/joint_wheel_right";
+  joint_states_.name[0] = "joint_wheel_left";
+  joint_states_.name[1] = "joint_wheel_right";
   joint_states_.position.resize(2);
-  joint_states_.header.frame_id = "/base_link";
+  joint_states_.header.frame_id = "base_link";
 }
 
 MobileRobot::~MobileRobot()

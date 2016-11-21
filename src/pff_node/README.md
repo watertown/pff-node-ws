@@ -4,19 +4,31 @@
 
 [Install ROS Kinetic]( http://wiki.ros.org/kinetic/Installation/Ubuntu)
 
-### 1.2 Install Dependencies
+```bash
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 0xB01FA116
+sudo apt-get update
+sudo apt-get install ros-kinetic-desktop-full
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+### 1.2 Install Package Dependencies
 
 ```bash
 sudo apt-get install ros-kinetic-teleop-twist-keyboard
 ```
 
-### 1.3 Get Package & Build
+### 1.3 Clone Package & Build
 
 ```bash
 git clone https://github.com/watertown/pff-ros-ws.git
 cd pff-ros-ws;
 catkin_make;
-. devel/setup.bash
+echo "source devel/setup.bash" >> ~/.bashrc
+source ./devel/setup.bash
 ```
 
 # 2. Node API
@@ -32,7 +44,7 @@ catkin_make;
 
 ### 2.1.2 ROS Subscribers
 
-| Topic | Msg | Description |
+| ROS Topic | ROS Msg Type | Description |
 |:---:|:---:|:---:|
 | `"~select_mode"` | `std_msgs/String` | Select mode {circle/square} |
 | `"/cmd_vel"` | `geometry_msgs/Twist` | Commanded velocity to the mobile base |
@@ -40,14 +52,14 @@ catkin_make;
 
 ### 2.1.3 ROS Parameters
 
-| Param | Type | Default | Description |
+| ROS Parameter Name | Param Type | Default Value | Param Description |
 |:---:|:---:|:---:|:---:|
 | `~mode` | string | `circle` | Mode |
 | `~circle_diameter` | double | `1.0` | Diameter of Circle Path (m) |
 | `~square_side_length` | double | `1.0` | Square Path Side Length (m) |
 | `~autonomous` | bool | `true` | Robot will start following path if true |
 
-### 2.1.4 roslaunch
+### 2.1.4 Roslaunch Example
 
 ```xml
 <?xml version="1.0"?>
@@ -82,12 +94,13 @@ roslaunch pff_node pff_node.launch
 roslaunch pff_node rviz_sim.launch
 ```
 
+### 3.1.3 Command Robot with keyboard.
 
 ```bash
 roslaunch pff_node keyboard_teleop.launch
 ```
 
-### 3.1.4 Selecting Mode ("circle" or "square")
+### 3.1.4 Select Mode ("circle" or "square")
 
 ##### Square Mode:
 

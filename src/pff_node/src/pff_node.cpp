@@ -61,6 +61,7 @@ void cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 {
   tf::Vector3 new_vel(msg->linear.x, 0, msg->angular.z);
   robot.setVelocity(new_vel);
+  autonomous = false;
 }
 
 int main(int argc, char **argv)
